@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock,Paper, and Scissors</title>
+    </head>
+    <body>
+        <script>
+            
+            
+
+            function computerPlay(){
+                var gameOptions = ["rock", "paper", "scissors"];
+                var gameChoice = gameOptions[Math.floor(Math.random()*gameOptions.length)];
+
+                return gameChoice;
+            }
+
+            function playerPlay(){
+                var playerChoiceCase = prompt("Typer rock, paper, or scissors");
+                let playerChoice= playerChoiceCase.toLowerCase();
+
+                if(playerChoice=="rock" || playerChoice=="paper" || playerChoice=="scissors"){
+                    alert("You have selected " + playerChoice);
+                    return playerChoice;
+
+                 }
+                else if(playerChoice===null || playerChoice==="" ){
+                    alert("You need to enter rock, paper or scissors");
+                    playerPlay()
+                }else{
+                    alert("Please enter rock paper or scissors");
+                    playerPlay()
+                }
+    
+            } 
+
+            function game(){               
+    
+                function playRound(playerSelection, computerSelection){
+                    
+                    if (playerSelection == 'rock' && computerSelection == 'scissors'){
+                        console.log("player wins, rock beats scissors");
+                    }
+                    
+                    else if(playerSelection == 'paper' && computerSelection == 'rock'){
+                        console.log("player wins, paper beats rock ");
+                    }
+                    else if(playerSelection == 'scissors' && computerSelection == 'paper'){
+                        console.log("player wins, scissors beats paper");
+                    }
+                    else if(playerSelection === computerSelection){
+                        console.log("tie round");
+                    }
+                    else{
+                        console.log("computer wins " + computerSelection + " beats " + playerSelection);
+                    }
+
+
+                }
+                
+                const computerSelection = computerPlay();
+                const playerSelection = playerPlay();
+                playRound(playerSelection,computerSelection);
+            }
+
+            game();
+
+        </script>
+
+    </body>
+</html>
