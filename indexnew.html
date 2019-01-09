@@ -5,12 +5,13 @@
     </head>
     <body>
 
-        <button id="rock" class="btn">Rock</button>
-        <button onclick="playRound('rock')" id="paper" class="btn">Paper</button>
-        <button id="scissors" class="btn">Scissors</button>
+        <button id="rock" onclick='rockRound()' class="btn">Rock</button>
+        <button id="paper" onclick='paperRound()' class="btn">Paper</button>
+        <button id="scissors" onclick='scissorsRound()' class="btn">Scissors</button>
         <script>
-            
-            
+
+           var playerSelection = "";
+
             // computer random pick
             function computerPlay(){
                 var gameOptions = ["rock", "paper", "scissors"];
@@ -18,13 +19,13 @@
 
                 return gameChoice;
             }
-            // gets input from player CHANGE ME
-            
+
+
             //plays game
             function game(){               
                 //checks if the players pick is better than computers
                 function playRound(playerSelection, computerSelection){
-                    
+            
                     if (playerSelection == 'rock' && computerSelection == 'scissors'){
                         console.log("player wins, rock beats scissors");
                     }
@@ -46,13 +47,30 @@
                 }
                 
                 const computerSelection = computerPlay();
-                const playerSelection = playerPlay();
                 playRound(playerSelection,computerSelection);
             }
-            // this would be new input so we should edit old input
+            // this would be new input 
             
+            var paperRound = () =>  {
+                playerSelection = 'paper';
+                computerPlay();
+                game();
+                console.log("paper was clicked");
+            }
+            var rockRound = () =>  {
+                playerSelection = 'rock';
+                computerPlay();
+                game();
+                console.log("rock was clicked");
+            }
+            var scissorsRound = () =>  {
+                playerSelection = 'scissors';
+                computerPlay();
+                game();
+                console.log("scissors was clicked");
+            }
 
-            game();
+            
 
         </script>
 
