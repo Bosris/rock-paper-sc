@@ -2,16 +2,27 @@
 <html>
     <head>
         <title>Rock,Paper, and Scissors</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body>
 
         <button id="rock" onclick='rockRound()' class="btn">Rock</button>
         <button id="paper" onclick='paperRound()' class="btn">Paper</button>
         <button id="scissors" onclick='scissorsRound()' class="btn">Scissors</button>
+        <div id='div'></div>
+        <div id="round">Round: 0</div>
+        <div id="player-score-div">Player Score: 0</div>
+        <div id="computer-score-div">Computer Score: 0</div>
+        <div id="result"></div>
+        <button id="reset-btn" onclick="resetPlay()">Reset Game</button>
+
+        
         <script>
 
            var playerSelection = "";
-
+           var playerScore = 0;
+           var computerScore = 0;
+           var round = 0;
             // computer random pick
             function computerPlay(){
                 var gameOptions = ["rock", "paper", "scissors"];
@@ -25,26 +36,72 @@
             function game(){               
                 //checks if the players pick is better than computers
                 function playRound(playerSelection, computerSelection){
+                    const div = document.querySelector('#div');
+                    const roundDiv = document.querySelector('#round');
+                    const playerScoreDiv = document.querySelector('#player-score-div');
+                    const computerScoreDiv = document.querySelector('#computer-score-div');
+                    const resultDiv = document.querySelector('#result');
+
+
             
                     if (playerSelection == 'rock' && computerSelection == 'scissors'){
-                        console.log("player wins, rock beats scissors");
+                        div.textContent = 'player wins, rock beats scissors';
+                        round++
+                        roundDiv.textContent = "Round: " + round;
+                        playerScore++;
+                        playerScoreDiv.textContent = "Player Score: " + playerScore;
+                        resultDiv.textContent = ""; 
                     }
                     
                     else if(playerSelection == 'paper' && computerSelection == 'rock'){
-                        console.log("player wins, paper beats rock ");
+                        div.textContent = "player wins, paper beats rock";
+                        round++
+                        roundDiv.textContent = "Round: " +  round;
+                        playerScore++;
+                        playerScoreDiv.textContent = "Player Score: " + playerScore;
+                        resultDiv.textContent = "";
                     }
                     else if(playerSelection == 'scissors' && computerSelection == 'paper'){
-                        console.log("player wins, scissors beats paper");
+                        div.textContent = "player wins, scissors beats paper";
+                        round++
+                        roundDiv.textContent = "Round: " +  round;
+                        playerScore++;
+                        playerScoreDiv.textContent = "Player Score: " + playerScore;
+                        resultDiv.textContent = "";
                     }
                     else if(playerSelection === computerSelection){
-                        console.log("tie round");
+                        div.textContent = "tie round";
+                        round++
+                        roundDiv.textContent = "Round: " +  round;
                     }
                     else{
-                        console.log("computer wins " + computerSelection + " beats " + playerSelection);
+                        div.textContent = "computer wins, " + computerSelection + " beats " + playerSelection;
+                        computerScore++
+                        round++
+                        roundDiv.textContent = "Round: " +  round;
+                        computerScoreDiv.textContent = "Computer Score: " + computerScore;
+                        resultDiv.textContent = "";
                     }
 
 
-                }
+                        // checks the score
+                    if (playerScore == 5 && computerScore !== 5){
+                        console.log("player wins the rounds");
+                        playerScore = 0;
+                        computerScore = 0;
+                        round = 0;
+                        roundDiv.textContent = "Round: " +  round;
+                        resultDiv.textContent = "PLAYER WINS";
+
+                    } else if (computerScore == 5 && playerScore !== 5){
+                        console.log("computer wins the rounds")
+                        playerScore = 0;
+                        computerScore = 0;
+                        round = 0;
+                        roundDiv.textContent = "Round: " +  round;
+                        resultDiv.textContent = "COMPUTER WINS";
+                    }
+}
                 
                 const computerSelection = computerPlay();
                 playRound(playerSelection,computerSelection);
@@ -70,6 +127,25 @@
                 console.log("scissors was clicked");
             }
 
+            //Add a reset button for this, change result div. 
+            function resetPlay (){
+                const div = document.querySelector('#div');
+                const roundDiv = document.querySelector('#round');
+                const playerScoreDiv = document.querySelector('#player-score-div');
+                const computerScoreDiv = document.querySelector('#computer-score-div');
+                const resultDiv = document.querySelector('#result');
+                
+                playerScore = 0;
+                computerScore = 0;
+                round = 0;
+                div.textContent = '';
+                roundDiv.textContent = "Round: " +  round;
+                playerScoreDiv.textContent = "Player Score: " + playerScore;
+                computerScoreDiv.textContent = "Computer Score: " + computerScore;
+                resultDiv.textContent = "";
+
+
+            }
             
 
         </script>
